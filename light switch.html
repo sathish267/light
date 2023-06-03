@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dimmer Switch</title>
+  <style>
+    body{
+        background-color: rgb(255, 251, 251);
+    }
+    .bulb-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .bulb {
+      position: relative;
+      width: 160px;
+      height: 240px;
+      cursor: pointer;
+      background: url('C:/Users/santhish/Downloads/3-bulb-png-image.png');
+      transition: background-image 0.3s ease;
+   
+    }
+    .bulb.on {
+      background-image: url('C:/Users/santhish/Downloads/pngegg-removebg-preview.png');
+    box-shadow:  yellow 10px 10px 10px 10px  ;
+    }
+    .bulb-label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #666;
+    }
+    .slider {
+      width: 200px;
+      margin-top: 20px;
+    }
+    .slider input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    .slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+    .slider input[type="range"]::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+    .slider input[type="range"]:focus {
+      opacity: 1;
+    }
+    .enter-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display;
+    }
+    .bulb.on + .enter-button {
+      display: block;
+    }
+  </style>
+  <script>
+    function toggleBulb() {
+      var bulbElement = document.querySelector('.bulb');
+      bulbElement.classList.toggle('on');
+    }
+
+    function changeBrightness() {
+      var sliderValue = document.getElementById('brightnessSlider').value;
+      var bulbElement = document.querySelector('.bulb');
+      bulbElement.style.opacity = sliderValue / 100;
+    }
+
+    function enterMainPage() {
+      var bulbElement = document.querySelector('.bulb');
+      if (bulbElement.classList.contains('on')) {
+        window.location.href = "main.html";
+      } else {
+        alert("Please turn on the bulb to enter the main page.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="bulb-container">
+    <h1>Welcome to the Main Page</h1>
+    <div class="bulb" onclick="toggleBulb()"></div>
+    <label class="bulb-label">Bulb:</label>
+    <div class="slider">
+      <input type="range" id="brightnessSlider" min="0" max="100" value="100" onchange="changeBrightness()">
+    </div>
+    <button class="enter-button" onclick="enterMainPage()">Enter</button>
+  </div>
+</body>
+</html>
